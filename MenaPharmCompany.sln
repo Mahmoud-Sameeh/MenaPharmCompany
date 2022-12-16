@@ -5,6 +5,10 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenaPharmCompany", "MenaPharmCompany\MenaPharmCompany.csproj", "{61C71721-073E-4EE2-A482-52CDD504935E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{194EC8B8-DE13-4D1F-AF0F-2C23A72A3C20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{92A1F82C-5503-4C85-9A04-417D2C238B09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{61C71721-073E-4EE2-A482-52CDD504935E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61C71721-073E-4EE2-A482-52CDD504935E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61C71721-073E-4EE2-A482-52CDD504935E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{194EC8B8-DE13-4D1F-AF0F-2C23A72A3C20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{194EC8B8-DE13-4D1F-AF0F-2C23A72A3C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{194EC8B8-DE13-4D1F-AF0F-2C23A72A3C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{194EC8B8-DE13-4D1F-AF0F-2C23A72A3C20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92A1F82C-5503-4C85-9A04-417D2C238B09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92A1F82C-5503-4C85-9A04-417D2C238B09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92A1F82C-5503-4C85-9A04-417D2C238B09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92A1F82C-5503-4C85-9A04-417D2C238B09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
