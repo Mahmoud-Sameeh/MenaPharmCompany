@@ -1,4 +1,11 @@
+using Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<MenaPharmCompanyContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MenaPharmCompanyContext")
+                         ?? throw new InvalidOperationException("Connection string 'MenaPharmCompanyContext' not found.")));
 
 // Add services to the container.
 
@@ -16,6 +23,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(options =>
+    options.AllowAnyHeader()
+           .AllowAnyMethod()
+           .AllowAnyOrigin());
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
