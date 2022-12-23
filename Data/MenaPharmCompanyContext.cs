@@ -9,6 +9,9 @@ namespace Data
 {
     public class MenaPharmCompanyContext : DbContext
     {
+        public MenaPharmCompanyContext()
+        {
+        }
         public MenaPharmCompanyContext(DbContextOptions<MenaPharmCompanyContext> options)
             : base(options)
         {

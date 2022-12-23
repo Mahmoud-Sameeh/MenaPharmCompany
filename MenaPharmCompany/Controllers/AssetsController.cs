@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Data;
-using Microsoft.AspNetCore.Http;
+﻿using Data.Repoitories;
+using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Domain;
 
 namespace MenaPharmCompany.Controllers
 {
@@ -14,25 +9,25 @@ namespace MenaPharmCompany.Controllers
     [ApiController]
     public class AssetsController : ControllerBase
     {
-        private readonly MenaPharmCompanyContext _context;
+        private readonly IGenericRepository<Asset> _context;
 
-        public AssetsController(MenaPharmCompanyContext context)
+        public AssetsController(IGenericRepository<Asset> context)
         {
             _context = context;
         }
 
         // GET: api/Assets
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Asset>>> GetAsset()
+        public  ActionResult<IEnumerable<Asset>> GetAsset()
         {
-            return await _context.Asset.ToListAsync();
+            return _context.GetAll().ToList();
         }
 
         // GET: api/Assets/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Asset>> GetAsset(int id)
+        public ActionResult<Asset> GetAsset(int id)
         {
-            var asset = await _context.Asset.FindAsync(id);
+            var asset = _context.FindById(id);
 
             if (asset == null)
             {
@@ -52,11 +47,11 @@ namespace MenaPharmCompany.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(asset).State = EntityState.Modified;
+            _context.Update(asset);
 
             try
             {
-                await _context.SaveChangesAsync();
+                _context.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -75,34 +70,34 @@ namespace MenaPharmCompany.Controllers
 
         // POST: api/Assets
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Asset>> PostAsset(Asset asset)
+        [HttpPost("")]
+        public ActionResult<Asset> PostAsset(Asset asset)
         {
-            _context.Asset.Add(asset);
-            await _context.SaveChangesAsync();
+            _context.Insert(asset);
+            _context.Save();
 
             return CreatedAtAction("GetAsset", new { id = asset.Id }, asset);
         }
 
         // DELETE: api/Assets/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsset(int id)
+        public IActionResult DeleteAsset(int id)
         {
-            var asset = await _context.Asset.FindAsync(id);
+            var asset = _context.FindById(id);
             if (asset == null)
             {
                 return NotFound();
             }
 
-            _context.Asset.Remove(asset);
-            await _context.SaveChangesAsync();
+            _context.Delete(asset.Id);
+            _context.Save();
 
             return NoContent();
         }
 
         private bool AssetExists(int id)
         {
-            return _context.Asset.Any(e => e.Id == id);
+            return _context.Any(e => e.Id == id);
         }
     }
 }
